@@ -1,0 +1,13 @@
+-m32
+-ffreestanding
+-std=gnu11
+-Ikernel
+-Ikernel/include
+-Ikernel/lib
+-Ikernel/drivers
+-Ikernel/arch
+-Ikernel/mm
+-Ikernel/fs
+-Ikernel/shell
+-Ikernel/pkg
+-Ikernel/gui

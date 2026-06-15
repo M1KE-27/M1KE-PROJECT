@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>M1KE PROJECT — a hyper-personalizable operating system</title>
+<meta name="description" content="M1keOS: a from-scratch operating system. Everything is observable, scriptable and modifiable from one control plane, and styled with m1ss — our own CSS-like language." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="aurora"></div>
+
+<header class="nav">
+  <a class="brand" href="#top"><span class="dot"></span>M1KE&nbsp;PROJECT</a>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#m1ss">m1ss</a>
+    <a href="#commands">Commands</a>
+    <a href="#roadmap">Roadmap</a>
+    <a class="ghost" href="#download">Download</a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="kicker">a from-scratch operating system</p>
+      <h1>The OS that<br><span class="grad">serves you.</span></h1>
+      <p class="lede">
+        M1keOS boots from its own kernel to its own glass desktop. Every component is
+        <b>observable</b>, <b>scriptable</b> and <b>replaceable</b> from a single control
+        plane — and the whole interface is styled with <b>m1ss</b>, our own CSS-like
+        language you can reload live.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#download">↓ Download m1keOS</a>
+        <a class="btn" href="#m1ss">Try the m1ss playground</a>
+      </div>
+      <p class="sub">Friendly by default · 100% technical when you want it.</p>
+    </div>
+
+    <div class="window glass term" aria-hidden="true">
+      <div class="titlebar"><span class="tb-dot r"></span><span class="tb-dot y"></span><span class="tb-dot g"></span><span class="tb-name">m1ke@m1keOS — terminal</span></div>
+      <pre class="screen"><span class="p">m1ke@m1keOS</span>:<span class="c">~</span>$ neofetch
+<span class="o">    ___ ___  _ _  ___ ___  ___</span>
+<span class="o">   |   |_  || | || __/ _ \/ __|</span>   <span class="dim">os      </span> m1keOS 0.5 "Naranja"
+<span class="o">   | | | | || | || _| (_) \__ \</span>   <span class="dim">kernel  </span> m1ke-hybrid 32-bit
+<span class="o">   |_|_|_|_||___||___\___/|___/</span>   <span class="dim">display </span> framebuffer 1024x768x32
+
+<span class="p">m1ke@m1keOS</span>:<span class="c">~</span>$ m1kectl theme set accent purple
+theme accent = purple (applied + saved)
+<span class="p">m1ke@m1keOS</span>:<span class="c">~</span>$ <span class="cursor">█</span></pre>
+    </div>
+  </section>
+
+  <!-- ================= PHILOSOPHY ================= -->
+  <section class="philo">
+    <h2 class="center">Philosophy</h2>
+    <p class="center muted">Ningún componente es especial. El usuario tiene control absoluto.</p>
+    <div class="chips">
+      <span>Todo es modificable</span><span>Todo es observable</span>
+      <span>Todo es scriptable</span><span>Todo es reemplazable</span>
+      <span>Todo tiene API</span><span>GUI y terminal de primera clase</span>
+      <span>Config en texto, versionable con Git</span>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section id="features">
+    <h2>What's inside</h2>
+    <div class="grid">
+      <div class="card glass"><h3>🟠 Own kernel</h3><p>32-bit hybrid kernel: GDT/IDT, IRQs, PIT, PS/2 keyboard &amp; mouse, kernel heap, and a RAM filesystem. Boots via Multiboot/GRUB.</p></div>
+      <div class="card glass"><h3>🪟 Glass desktop</h3><p>A compositor written from scratch on the linear framebuffer: blur, translucency, rounded corners, soft shadows, taskbar &amp; start menu.</p></div>
+      <div class="card glass"><h3>🎛️ Control plane</h3><p><code>m1kectl</code> inspects and controls every subsystem: scheduler, memory, modules, services, windows — all from the terminal.</p></div>
+      <div class="card glass"><h3>🎨 m1ss language</h3><p>Our own CSS-like styling language. Edit <code>/etc/m1ke/theme.m1ss</code>, run <code>m1kectl theme reload</code>, and the whole UI restyles live.</p></div>
+      <div class="card glass"><h3>📦 m1pkg</h3><p>A package manager with a built-in repository that installs real files into the filesystem. <code>m1pkg install &lt;pkg&gt;</code>.</p></div>
+      <div class="card glass"><h3>🧰 Real apps</h3><p>A Terminal that runs the actual shell, a text Editor that saves, a Files browser, a System Monitor and a Settings panel.</p></div>
+      <div class="card glass"><h3>🔌 Hot modules</h3><p>Load/unload drivers at runtime: <code>m1kectl module unload mouse</code> really masks its IRQ. Nothing is sacred.</p></div>
+      <div class="card glass"><h3>🔎 Observable</h3><p>A live event bus (<code>dmesg</code>) and <code>m1kectl inspect</code> let you watch and query the running system.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= m1ss PLAYGROUND ================= -->
+  <section id="m1ss">
+    <h2>m1ss — style your OS like CSS</h2>
+    <p class="muted">This is the <b>exact same language</b> m1keOS parses at boot. Edit it below and watch the preview restyle — just like it does on the real system after <code>m1kectl theme reload</code>.</p>
+    <div class="playground">
+      <textarea id="m1ss-input" spellcheck="false">desktop {
+  accent:    #ff8c1a;   /* orange | rose | green | blue | purple | gold | #hex */
+  wallpaper: aurora;    /* aurora | gradient | grid | solid */
+}
+window {
+  radius:  14;
+  blur:    8;
+  opacity: 58;          /* frosted-glass strength 0..100 */
+  shadow:  16;
+}
+taskbar {
+  visible:  true;
+  position: bottom;     /* bottom | top */
+}</textarea>
+      <div class="preview" id="preview">
+        <div class="pv-wall" id="pv-wall">
+          <div class="pv-win glass" id="pv-win">
+            <div class="pv-tb" id="pv-tb"><span></span>Terminal</div>
+            <div class="pv-body"><span class="pv-prompt">m1ke@m1keOS</span>:~$ hello<br><span class="pv-cur">█</span></div>
+          </div>
+          <div class="pv-bar" id="pv-bar"><span class="pv-start" id="pv-start">m1keOS</span><span class="pv-clock">12:34</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="muted small">Tip: try <code>accent: purple;</code>, <code>radius: 28;</code>, <code>position: top;</code> or <code>visible: false;</code>.</p>
+  </section>
+
+  <!-- ================= COMMANDS ================= -->
+  <section id="commands">
+    <h2>Command reference</h2>
+    <div class="cmd-search">
+      <input id="cmd-filter" type="text" placeholder="filter commands…  (e.g. theme, module, ls)" />
+    </div>
+
+    <h3 class="sub-h">Shell — <span class="dim">m1sh</span></h3>
+    <table class="cmd"><tbody id="tbl-shell"></tbody></table>
+
+    <h3 class="sub-h">Control plane — <span class="dim">m1kectl</span></h3>
+    <table class="cmd"><tbody id="tbl-ctl"></tbody></table>
+
+    <h3 class="sub-h">m1ss properties</h3>
+    <table class="cmd"><tbody id="tbl-m1ss"></tbody></table>
+  </section>
+
+  <!-- ================= ROADMAP ================= -->
+  <section id="roadmap">
+    <h2>Roadmap</h2>
+    <ol class="phases">
+      <li class="done"><b>Fase 0</b> — Base: boot, drivers, heap, ramfs, shell, packages.</li>
+      <li class="done"><b>Fase 1</b> — Control plane: m1kectl, config en texto, eventos.</li>
+      <li class="done"><b>Fase 1.5</b> — Glass desktop + lenguaje m1ss + temas en vivo.</li>
+      <li><b>Fase 2</b> — Scheduler preventivo + procesos reales.</li>
+      <li><b>Fase 3</b> — Memoria virtual (paging).</li>
+      <li><b>Fase 4</b> — Userspace + cargador ELF + syscalls.</li>
+      <li><b>Fase 5</b> — IPC + módulos dinámicos en caliente.</li>
+      <li><b>Fase 6</b> — VFS + disco persistente.</li>
+      <li><b>Fase 7</b> — Compositor/protocolo gráfico propio.</li>
+      <li><b>Fase 8</b> — Networking (TCP/IP). <b>9</b> Audio/USB. <b>10</b> SMP.</li>
+    </ol>
+  </section>
+
+  <!-- ================= DOWNLOAD ================= -->
+  <section id="download" class="download">
+    <div class="card glass dl">
+      <h2>Download &amp; build</h2>
+      <p>m1keOS ships as source you compile into a bootable ISO. Released version by version.</p>
+      <div class="dl-version">latest: <b>v0.5 "Naranja"</b></div>
+      <pre class="screen sm"><span class="dim"># Arch / CachyOS</span>
+sudo pacman -S nasm grub qemu
+
+git clone https://github.com/&lt;your-user&gt;/m1ke-project
+cd m1ke-project
+make all      <span class="dim"># builds m1keos.iso</span>
+make gui      <span class="dim"># boots the graphical desktop</span></pre>
+      <div class="cta">
+        <a class="btn primary" id="iso-link" href="#">↓ m1keos.iso</a>
+        <a class="btn" href="https://github.com/">Source on GitHub</a>
+      </div>
+      <p class="small muted">Open source. Builds anywhere with <code>gcc -m32</code>, <code>nasm</code>, <code>grub</code> and <code>qemu</code>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>M1KE PROJECT · m1keOS — Naranja y Negro Edition</div>
+  <div class="muted small">Hecho desde cero. El sistema sirve al usuario.</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

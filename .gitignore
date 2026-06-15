@@ -1,0 +1,48 @@
+# Ignore build artifacts and distribution files
+/obj/
+/bin/
+/iso/
+*.iso
+*.img
+*.iso.gz
+
+# Ignore editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Ignore markdown, docs and images (user requested to omit these)
+*.md
+/docs/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+*.ico
+
+# Ignore compiled outputs and temporary files
+*.o
+*.so
+*.a
+*.elf
+*.exe
+*.bin
+*.log
+*.tmp
+*.swp
+
+# Ignore distribution archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Ignore common package manager and build dirs
+/node_modules/
+/dist/
+
+# Misc
+.cache/
+.pytest_cache/
